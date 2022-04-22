@@ -4,8 +4,6 @@ This repository provides implementation for the article *Beyond classification: 
 ## Guideline
 `example_run.py` is an example script for running the data processing, training and evaluation for whole slide image analysis. 
 
-Please use `python example_run.py --help` to see complete set of parameters and their descriptions.
-
 Whole slide images should be tiled into a library of image patches with the following format:
 
 SlideID | Split | target | x | y 
@@ -26,7 +24,9 @@ Use the following command to run:
 
 `args.stage` specifies which stage of the pipeline the scipts should run: `'train'`, `'val'`, `'test'`
 
-Check `makedata.py` for the working directory and the outputs that will be saved.
+Please use `python example_run.py --help` or check the code itself to see complete set of parameters and their descriptions.
+
+`makedata.py` build up working directories where the convergence curves, learned models, centroids, part attributions and visualization outputs will be saved. Tweek `EPL_train.py` if you want to avoid generating certain outputs to save disk place. 
 
 ## Python Dependencies
 * torch 1.4.0
