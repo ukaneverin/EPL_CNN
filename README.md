@@ -22,13 +22,9 @@ Use the following command to run:
 
 `python example_run.py --stage $stage$`
 
-`args.stage` specifies which stage of the pipeline the scipts should run: `train`, `val`, `test`
+`args.stage` specifies which stage of the pipeline the scipts should run: `'train'`, `'val'`, `'test'`
 
-The following will be generated in the output folder:
-* convergence.csv
-  * a file containing training loss, training concordance index, and validation condorance index over training epochs
-* /clustering_grid_top
-  * a folder where a clustering visualization for top 20 tiles of each cluster is displayed and saved as a `.png` 
+Check `makedata.py` for the working directory and the outputs that will be saved.
 
 ## Python Dependencies
 * torch 1.4.0
