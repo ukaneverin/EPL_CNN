@@ -22,7 +22,7 @@ Use the following command to run:
 
 `python example_run.py --stage $stage$`
 
-`args.stage` specifies which stage of the pipeline the scipts should run
+`args.stage` specifies which stage of the pipeline the scipts should run: `train`, `val`, `test`
 
 The following will be generated in the output folder:
 * convergence.csv
