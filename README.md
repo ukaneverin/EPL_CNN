@@ -40,12 +40,23 @@ The following will be generated in the output folder:
 This project is under the CC-BY-NC 4.0 license. See [LICENSE](LICENSE.md) for details. (c) MSK
 
 ## Cite
-If you find our work useful, please consider citing our [EPL Paper](https://openreview.net/pdf?id=JSSwHS_GU63):
+If you find our work useful, please consider citing our [EPL Paper](http://proceedings.mlr.press/v121/xie20a/xie20a.pdf):
 ```
-@inproceedings{muhammad2021epic,
-  title={EPIC-Survival: End-to-end Part Inferred Clustering for Survival Analysis, with Prognostic Stratification Boosting},
-  author={Muhammad, Hassan and Xie, Chensu and Sigel, Carlie S and Doukas, Michael and Alpert, Lindsay and Simpson, Amber Lea and Fuchs, Thomas J},
-  booktitle={Medical Imaging with Deep Learning},
-  year={2021}
+
+@InProceedings{pmlr-v121-xie20a,
+  title = 	 {Beyond Classification: Whole Slide Tissue Histopathology Analysis By End-To-End Part Learning},
+  author =       {Xie, Chensu and Muhammad, Hassan and Vanderbilt, Chad M. and Caso, Raul and Yarlagadda, Dig Vijay Kumar and Campanella, Gabriele and Fuchs, Thomas J.},
+  booktitle = 	 {Proceedings of the Third Conference on Medical Imaging with Deep Learning},
+  pages = 	 {843--856},
+  year = 	 {2020},
+  editor = 	 {Arbel, Tal and Ben Ayed, Ismail and de Bruijne, Marleen and Descoteaux, Maxime and Lombaert, Herve and Pal, Christopher},
+  volume = 	 {121},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {06--08 Jul},
+  publisher =    {PMLR},
+  pdf = 	 {http://proceedings.mlr.press/v121/xie20a/xie20a.pdf},
+  url = 	 {https://proceedings.mlr.press/v121/xie20a.html},
+  abstract = 	 {An emerging technology in cancer care and research is the use of histopathology whole slide images (WSI). Leveraging computation methods to aid in WSI assessment poses unique challenges. WSIs, being extremely high resolution giga-pixel images, cannot be directly processed by convolutional neural networks (CNN) due to huge computational cost. For this reason, state-of-the-art methods for WSI analysis adopt a two-stage approach where the training of a tile encoder is decoupled from the tile aggregation. This results in a trade-off between learning diverse and discriminative features. In contrast, we propose end-to-end part learning (EPL) which is able to learn diverse features while ensuring that learned features are discriminative. Each WSI is modeled as consisting of $k$ groups of tiles with similar features, defined as parts. A loss with respect to the slide label is backpropagated through an integrated CNN model to $k$ input tiles that are used to represent each part. Our experiments show that EPL is capable of clinical grade prediction of prostate and basal cell carcinoma. Further, we show that diverse discriminative features produced by EPL succeeds in multi-label classification of lung cancer architectural subtypes. Beyond classification, our method provides rich information of slides for high quality clinical decision support.}
 }
+
 ```
