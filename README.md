@@ -18,6 +18,8 @@ SlideID | Split | target | x | y
 ... | ... | ... | ... 
 556 | validation | 1 | 5120 | 2240 
 
+Where the x and y are the coordinates of the top left vertex of tiles.
+
 Use the following command to run:
 
 `python example_run.py --stage $stage$`
