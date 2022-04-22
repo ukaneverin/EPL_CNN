@@ -22,7 +22,7 @@ Use the following command to run:
 
 `python example_run.py --stage $stage$`
 
-`args.stage` specifies which 
+`args.stage` specifies which stage of the pipeline the scipts should run
 
 The following will be generated in the output folder:
 * convergence.csv
@@ -31,9 +31,8 @@ The following will be generated in the output folder:
   * a folder where a clustering visualization for top 20 tiles of each cluster is displayed and saved as a `.png` 
 
 ## Python Dependencies
-* torch 1.8.1
-  * torchvision 0.9.1
-* lifelines 0.23.8
+* torch 1.4.0
+  * torchvision 0.5.0
 * openslide 1.1.1
   * *Note: We recommend modifying openslide to correct for memory leak issue. Please see https://github.com/openslide/openslide-python/issues/24 for more information.*
 
@@ -41,7 +40,7 @@ The following will be generated in the output folder:
 This project is under the CC-BY-NC 4.0 license. See [LICENSE](LICENSE.md) for details. (c) MSK
 
 ## Cite
-If you find our work useful, please consider citing our [EPIC-Survival Paper](https://openreview.net/pdf?id=JSSwHS_GU63):
+If you find our work useful, please consider citing our [EPL Paper](https://openreview.net/pdf?id=JSSwHS_GU63):
 ```
 @inproceedings{muhammad2021epic,
   title={EPIC-Survival: End-to-end Part Inferred Clustering for Survival Analysis, with Prognostic Stratification Boosting},
