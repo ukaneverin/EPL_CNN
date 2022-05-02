@@ -59,8 +59,11 @@ def EPL_val(EPL_data, args, gpu, sel_epoch):
 
     model_slide.eval()
 
-    unique_val_ids, valset, val_id_index_dict = prepare_test_data(EPL_data.df, val=True)
-
+    if args.stage == 'val':
+        unique_val_ids, valset, val_id_index_dict = prepare_test_data(EPL_data.df, val=True)  # validation
+    else:
+        unique_val_ids, valset, val_id_index_dict = prepare_test_data(EPL_data.df, val=False)  # test
+    set_trace()
     AccMeter_val = AccuracyMeter(args.num_classes)
 
     prediction_scores = []

@@ -91,7 +91,7 @@ def EPL_train(EPL_data, args, gpu):
         # centroid approximation for slide loss
         supervised_train_sample = CreatePartSample(unique_ids, total_id_old, target_old, full_code_old,
                                                    assigned_clusters_old,
-                                                   attribution.avg, feature_length, args, args.p,
+                                                   attribution.avg, feature_length, args, args.nearest_p,
                                                    args.supervised_subsample_per_slide)
         supervised_dset = SupervisedSampleDataset(EPL_data.slide_path, train_dset_old.data, supervised_train_sample,
                                                   unique_ids,
@@ -131,7 +131,7 @@ def EPL_train(EPL_data, args, gpu):
 
             batch_centers = []
             for img_id, assignment in zip(batch_img_id, batch_assignments):
-                batch_centers.append(slide_cluster_centers_dict[img_id][assignment].numpy().tolist())
+                batch_centers.append(supervised_train_sample['slide_cluster_centers_dict'][img_id][assignment].numpy().tolist())
             batch_centers = torch.FloatTensor(batch_centers)
             constraint_output = model_tile(constraint_img.to(gpu))
 

@@ -112,7 +112,7 @@ def train_sampling(processed_data_train, slide_path, trans, ids_sampled, args):
             c]  # ids_sampled is list of sets: [{sampled ids in class 0}, {sampled ids in class 1}, ...]
         unique_train_ids_class = processed_data_train['unique_train_ids'][c]
 
-        id_sample_size = min(int(processed_data_train['N_train'] * args.ssp / len(ids_sampled)), len(unique_train_ids_class))
+        id_sample_size = min(int(processed_data_train['N_train'] * args.subsample_slide_percentage / len(ids_sampled)), len(unique_train_ids_class))
         if len(unique_train_ids_class - ids_sampled_class) > id_sample_size:  # if sampling size < len(rest samples)
             sub_ids = np.random.choice(list(unique_train_ids_class - ids_sampled_class), id_sample_size, replace=False)
             ids_previously_sampled[c] = set(sub_ids) | ids_sampled_class
@@ -125,7 +125,7 @@ def train_sampling(processed_data_train, slide_path, trans, ids_sampled, args):
 
         for id in sub_ids:
             sub_index_id_all = processed_data_train['train_id_index_dict'][id]
-            sub_index = np.random.choice(sub_index_id_all, min(args.stp, len(sub_index_id_all)), replace=False)
+            sub_index = np.random.choice(sub_index_id_all, min(args.subsample_tiles_per_slide, len(sub_index_id_all)), replace=False)
             sub_index_all[c].extend(sub_index)
             trainset_this_slide = trainset_class.iloc[sub_index].to_numpy().tolist()
             # print(trainset_class.iloc[sub_index])
@@ -144,10 +144,10 @@ def val_sampling(slide_path, trans, processed_data, args):
     sub_valset = []
     for id in unique_val_ids:
         sub_index_id_all = processed_data['val_id_index_dict'][id]
-        sub_index = np.random.choice(sub_index_id_all, min(args.stp, len(sub_index_id_all)), replace=False)
+        sub_index = np.random.choice(sub_index_id_all, min(args.subsample_tiles_per_slide, len(sub_index_id_all)), replace=False)
         valset_this_slide = processed_data['valset'].iloc[sub_index].to_numpy().tolist()
         sub_valset.extend(valset_this_slide)
-        if len(sub_valset) > args.stp * 500:  # only subsample up to 500 slides to validate
+        if len(sub_valset) > args.subsample_tiles_per_slide * 500:  # only subsample up to 500 slides to validate
             break
 
     sub_valset = np.asarray(sub_valset)
@@ -312,7 +312,7 @@ def CreatePartSample(unique_ids, total_id_old, target_old, full_code_old, assign
         slide_code = full_code_old[sid_index_id]
         assigned_clusters_old_sid = assigned_clusters_old[sid_index_id]
         dist_sid, slide_cluster_centers = slide_dist(slide_code, assigned_clusters_old_sid, attribution,
-                                                     args.n_cluster, waist, args.at)  # dist: shape (n,m)
+                                                     args.n_cluster, waist, args.attribution)  # dist: shape (n,m)
         slide_cluster_centers_dict[id] = slide_cluster_centers
         # sample the nearest p tiles for each cluster;
         unique_clusters_sid = np.unique(assigned_clusters_old_sid)  # only clusters in sid
@@ -341,10 +341,10 @@ def CreatePartSample(unique_ids, total_id_old, target_old, full_code_old, assign
     supervised_clusters_mask = np.asarray(supervised_clusters_mask)
 
     supervised_sample = {
-        'supervised_index_list': supervised_index_list,
-        'supervised_clusters_weight': supervised_clusters_weight,
-        'supervised_label_list': supervised_label_list,
-        'supervised_clusters_mask': supervised_clusters_mask,
+        'xindex_list': supervised_index_list,
+        'pw_list': supervised_clusters_weight,
+        'y_list': supervised_label_list,
+        'c_mask': supervised_clusters_mask,
         'slide_cluster_centers_dict': slide_cluster_centers_dict
     }
     return supervised_sample

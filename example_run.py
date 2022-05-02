@@ -102,7 +102,7 @@ def main():
         # load the test dataset to EPLData.df
         IO_info = args.dataset_name.split('.')[2:]
         test_file = '/lila/data/fuchs/projects/lung/IO_geo_library/library_k%s_test.csv' % IO_info[0]
-        EPLData.df = pd.read_csv(test_file, header=None)
+        EPL_data.df = pd.read_csv(test_file, header=None)
         EPL_val(EPL_data, args, gpu, sel_epoch=0)
 
 
